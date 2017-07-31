@@ -17,7 +17,7 @@ class UserController
     
     
     //!ログイン成功時の遷移先
-    const TARGET_PAGE = 'mypage.php';
+    const TARGET_PAGE = 'main.php';
     
     //!セッション保存用の名前
     const LOGINUSER = 'lum';
@@ -37,17 +37,17 @@ class UserController
         }
         
         //POSTから値を受け取る
-        $mail = filter_input(INPUT_POST, 'mail');
+        $email = filter_input(INPUT_POST, 'email');
         $password = filter_input(INPUT_POST, 'pass');
         $redirectURL = filter_input(INPUT_GET, 'nexturl');
         
         //どちらかがからの場合は何もしない
-        if($mail == '' || $password == '')
+        if($email == '' || $password == '')
         {
             return;
         }
-
-        //リダイレクト先がない場合マイページを指定
+        
+        //リダイレクト先がない場合, mainPageを指定
         if (null == $redirectURL)
         {
             $redirectURL = self::TARGET_PAGE;
@@ -58,7 +58,7 @@ class UserController
         Db::transaction();
         //emailからUserModelを取得する
         $objUM = new UserModel();
-        $objUM->getModelByMailAddress($mail);
+        $objUM->getModelByMailAddress($email);
         
         //パスワードチェック
         if(!$objUM->checkPassword($password))
@@ -88,19 +88,20 @@ class UserController
     * @param bool リダイレクトするか
     * @return void
     */
-    static public function checkLogin($redirectURL = 'mypage.php', $redirect = true)
+    static public function checkLogin($redirectURL = 'main.php', $redirect = true)
     {
         global $WEB_URL;
         
         $objUM = (isset($_SESSION[self::LOGINUSER])) ?
         $_SESSION[self::LOGINUSER] : null;
+
         if(isset($objUM))
         {
             return true;
         }
         if($redirect == true)
         {
-            header('Location:'.$WEB_URL.'login.php?nexturl='.$redirectURL);
+            header('Location:'.$WEB_URL.'index.php?nexturl='.$redirectURL);
         }
         else
         {
@@ -137,23 +138,9 @@ class UserController
     *
     * @return void
     */
-    static public function checkMailAddress($mailAddress)
+    static public function checkMailAddress($email)
     {
-        $dao = UserDao::getDaoFromEmail($mailAddress);
-        return (isset($dao[0])) ? true : false;
+        $dao = UserDao::getDaoFromEmail($email);
+        return isset($dao[0]);
     }
-    
-    /**
-    * IDからユーザの名前を返すメソッド
-    *
-    * @return str userName
-    */
-    static public function getUserNickname($id)
-    {
-        $sql = 'SELECT * FROM user WHERE userId=:value';
-        $prepare = array(":value" => $id);
-        $res = Db::select($sql, $prepare);
-        return $res[0]["userNickName"];
-    }
-    
 }

@@ -1,7 +1,8 @@
 <?php
 require_once "../common.php";
-use Cartalyst\Sentinel\Native\Facades\Sentinel as Sentinel;
-use Illuminate\Database\Capsule\Manager as Capsule;
+use app\controller\UserController;
+use app\dao\UserDao;
+use app\model\UserModel;
 use app\common\Db;
 
 
@@ -15,6 +16,7 @@ if(null != $_POST)
     $pass = filter_input(INPUT_POST, 'pass');
     $family_name = filter_input(INPUT_POST, 'family_name');
     $first_name = filter_input(INPUT_POST, 'first_name');
+    $zipcode = filter_input(INPUT_POST, 'zipcode');
     $address = filter_input(INPUT_POST, 'address');
     $phone = filter_input(INPUT_POST, 'phone');
     if(null == $email || null == $pass || null == $family_name || null == $first_name || null == $address || null == $phone)
@@ -26,20 +28,31 @@ if(null != $_POST)
         //登録
         
         // ユーザー情報
-        $credentials = [
+        $arrUM = [
+        'id' => null,
         'email' => $email,
-        'password' => $pass,
+        'password' => password_hash($pass, PASSWORD_DEFAULT),
+        'permissions' => null,
+        'last_login' => null,
         'first_name' => $first_name,
         'last_name' => $family_name,
+        'zipcode' => $zipcode,
+        'address' => $address,
+        'phone' => $phone,
+        'created_at' => null,
+        'updated_at' => time()
         ];
+
+        //ユーザモデル
+        $objUM = new UserModel($arrUM);
         
         // 登録済みかを確認
-        $user = Sentinel::getUserRepository()->findByCredentials($credentials);
-        if (is_null($user)) {
+        if (!UserController::checkMailAddress($email)) {
             // 存在しない場合は、新規登録
-            $user = Sentinel::register($credentials);
-            $id = $user->attribute['id'];
-            var_dump($id);
+            Db::transaction();
+            $objUM->register();
+            Db::commit();
+            header('Location: index.php');
         }
     }
 }
@@ -89,6 +102,10 @@ if(null != $error_message)
                   <label>氏名</label>
                   <input class="form-control" type="text" name="family_name" placeholder="Family name">
                   <input class="form-control" type="text" name="first_name" placeholder="First name">
+                </div>
+                <div>
+                  <label>郵便番号</label>
+                  <input class="form-control" type="text" name="zipcode" placeholder="e.g. 100-0001">
                 </div>
                 <div>
                   <label>住所</label>

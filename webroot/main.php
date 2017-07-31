@@ -1,9 +1,8 @@
 <?php
-require '../common.php';
+require_once '../common.php';
 use app\controller\UserController;
-UserController::login();
-?>
 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +21,7 @@ UserController::login();
         <div class="row">
             <div class="col md-3"></div>
             <div class="col md-6 text-center">
-                <h2>Login</h2>
+                <h2>Main</h2>
                 <p>You can login to working manager system!</p>
                 <form action="" method="post">
                     <div>

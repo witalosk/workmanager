@@ -6,178 +6,121 @@ use app\common\Db;
 use app\model\UserModel;
 
 /**
- * UserDao クラス
- * @brief ユーザに関する処理のSQL文をつくる
- */
+* UserDao クラス
+* @brief ユーザに関する処理のSQL文をつくる
+*/
 class UserDao
 {
-
-  /**
-  * ユーザーIDから配列を取得する
-  * @param int $userId
-  * @return array
-  */
-  public static function getDaoFromUserId($userId)
-  {
-    $sql = "SELECT ";
-    $sql .= "* ";
-    $sql .= "FROM `user` ";
-    $sql .= "WHERE `userId` = :userId ";
-
-    $arr = array();
-    $arr[':userId'] = $userId;
-
-    return Db::select($sql, $arr);
-  }
-
-  /**
-  * メールアドレスから配列を取得する
-  * @param string $email
-  * @return array
-  */
-  public static function getDaoFromEmail($email)
-  {
-    $sql = "SELECT ";
-    $sql .= "* ";
-    $sql .= "FROM `user` ";
-    $sql .= "WHERE `userMailAddress` = :email";
-
-    $arr = array();
-    $arr[':email'] = $email;
     
-    return Db::select($sql, $arr);
-  }
-
-  /**
-  * 更新する
-  * @param UserModel $objUM
-  * @return bool
-  */
-  public static function save(UserModel $objUM)
-  {
-    $sql = "UPDATE `user` SET ";
-    $sql .= "`userNickName`= :userNickName, ";
-    $sql .= "`userMailAddress`= :userMailAddress, ";
-    $sql .= "`userHash`= :userHash, ";
-    $sql .= "`userSalt`= :userSalt, ";
-    $sql .= "`userFamilyName`= :userFamilyName, ";
-    $sql .= "`userFamilyNameRuby`= :userFamilyNameRuby, ";
-    $sql .= "`userFirstName`= :userFirstName, ";
-    $sql .= "`userFirstNameRuby`= :userFirstNameRuby, ";
-    $sql .= "`userZipcodeTop`= :userZipcodeTop, ";
-    $sql .= "`userZipcodeBottom`= :userZipcodeBottom, ";
-    $sql .= "`userPrefecture`= :userPrefecture, ";
-    $sql .= "`userCity`= :userCity, ";
-    $sql .= "`userAddress`= :userAddress, ";
-    $sql .= "`userBuilding`= :userBuilding, ";
-    $sql .= "`userPhone1`= :userPhone1, ";
-    $sql .= "`userPhone2`= :userPhone2, ";
-    $sql .= "`userSex`= :userSex, ";
-    $sql .= "`userBirthday`= :userBirthday, ";
-    $sql .= "`userToken`= :userToken ";
-    $sql .= "WHERE `userId` = :userId ";
-
-    $arr = array();
-    $arr[':userNickName'] = $objUM->getNickName();
-    $arr[':userMailAddress'] = $objUM->getMailAddress();
-    $arr[':userHash'] = $objUM->getHash();
-    $arr[':userSalt'] = $objUM->getSalt();
-    $arr[':userFamilyName'] = $objUM->getFamilyName();
-    $arr[':userFamilyNameRuby'] = $objUM->getFamilyNameRuby();
-    $arr[':userFirstName'] = $objUM->getFirstName();
-    $arr[':userFirstNameRuby'] = $objUM->getFirstNameRuby();
-    $arr[':userZipcodeTop'] = $objUM->getZipcodeTop();
-    $arr[':userZipcodeBottom'] = $objUM->getZipcodeBottom();
-    $arr[':userPrefecture'] = $objUM->getPrefecture();
-    $arr[':userCity'] = $objUM->getCity();
-    $arr[':userAddress'] = $objUM->getAddress();
-    $arr[':userBuilding'] = $objUM->getBuilding();
-    $arr[':userPhone1'] = $objUM->getPhone1();
-    $arr[':userPhone2'] = $objUM->getPhone2();
-    $arr[':userSex'] = $objUM->getSex();
-    $arr[':userBirthday'] = $objUM->getBirthday();
-    $arr[':userToken'] = $objUM->getToken();
-    $arr[':userId'] = $objUM->getId();
-
-    return Db::update($sql, $arr);
-  }
-
-  /**
-  * 新規作成する
-  * @return int
-  */
-  public static function insert(UserModel $objUM)
-  {
-    $sql = "INSERT INTO ";
-    $sql .= "`user` ";
-    $sql .= "(";
-    $sql .= "`userId`";
-    $sql .= ", `userNickName`";
-    $sql .= ", `userMailAddress`";
-    $sql .= ", `userHash`";
-    $sql .= ", `userSalt`";
-    $sql .= ", `userFamilyName`";
-    $sql .= ", `userFamilyNameRuby`";
-    $sql .= ", `userFirstName`";
-    $sql .= ", `userFirstNameRuby`";
-    $sql .= ", `userZipcodeTop`";
-    $sql .= ", `userZipcodeBottom`";
-    $sql .= ", `userPrefecture`";
-    $sql .= ", `userCity`";
-    $sql .= ", `userAddress`";
-    $sql .= ", `userBuilding`";
-    $sql .= ", `userPhone1`";
-    $sql .= ", `userPhone2`";
-    $sql .= ", `userSex`";
-    $sql .= ", `userBirthday`";
-    $sql .= ", `userToken`";
-
-    $sql .= ") VALUES (";
-
-    $sql .= "NULL ";
-    $sql .= ", :userNickName ";
-    $sql .= ", :userMailAddress ";
-    $sql .= ", :userHash ";
-    $sql .= ", :userSalt ";
-    $sql .= ", :userFamilyName ";
-    $sql .= ", :userFamilyNameRuby ";
-    $sql .= ", :userFirstName ";
-    $sql .= ", :userFirstNameRuby ";
-    $sql .= ", :userZipcodeTop ";
-    $sql .= ", :userZipcodeBottom ";
-    $sql .= ", :userPrefecture ";
-    $sql .= ", :userCity ";
-    $sql .= ", :userAddress ";
-    $sql .= ", :userBuilding ";
-    $sql .= ", :userPhone1 ";
-    $sql .= ", :userPhone2 ";
-    $sql .= ", :userSex ";
-    $sql .= ", :userBirthday ";
-    $sql .= ", :userToken ";
-    $sql .= ")";
-
-    $arr = array();
-    $arr[':userNickName'] = $objUM->getNickName();
-    $arr[':userMailAddress'] = $objUM->getMailAddress();
-    $arr[':userHash'] = $objUM->getHash();
-    $arr[':userSalt'] = $objUM->getSalt();
-    $arr[':userFamilyName'] = $objUM->getFamilyName();
-    $arr[':userFamilyNameRuby'] = $objUM->getFamilyNameRuby();
-    $arr[':userFirstName'] = $objUM->getFirstName();
-    $arr[':userFirstNameRuby'] = $objUM->getFirstNameRuby();
-    $arr[':userZipcodeTop'] = $objUM->getZipcodeTop();
-    $arr[':userZipcodeBottom'] = $objUM->getZipcodeBottom();
-    $arr[':userPrefecture'] = $objUM->getPrefecture();
-    $arr[':userCity'] = $objUM->getCity();
-    $arr[':userAddress'] = $objUM->getAddress();
-    $arr[':userBuilding'] = $objUM->getBuilding();
-    $arr[':userPhone1'] = $objUM->getPhone1();
-    $arr[':userPhone2'] = $objUM->getPhone2();
-    $arr[':userSex'] = $objUM->getSex();
-    $arr[':userBirthday'] = $objUM->getBirthday();
-    $arr[':userToken'] = $objUM->getToken();
-
-    return Db::insert($sql, $arr);
-  }
-
+    /**
+    * ユーザーIDから配列を取得する
+    * @param int $userId
+    * @return array
+    */
+    public static function getDaoFromId($id)
+    {
+        $sql = "SELECT ";
+        $sql .= "* ";
+        $sql .= "FROM `user` ";
+        $sql .= "WHERE `id` = :id ";
+        
+        $arr = array();
+        $arr[':id'] = $id;
+        
+        return Db::select($sql, $arr);
+    }
+    
+    /**
+    * メールアドレスから配列を取得する
+    * @param string $email
+    * @return array
+    */
+    public static function getDaoFromEmail($email)
+    {
+        $sql = "SELECT ";
+        $sql .= "* ";
+        $sql .= "FROM `user` ";
+        $sql .= "WHERE `email` = :email";
+        
+        $arr = array();
+        $arr[':email'] = $email;
+        
+        return Db::select($sql, $arr);
+    }
+    
+    /**
+    * 更新する
+    * @param UserModel $objUM
+    * @return bool
+    */
+    public static function save(UserModel $objUM)
+    {
+        $sql = "UPDATE `user` SET ";
+        $sql .= "`email`= :email, ";
+        $sql .= "`password`= :password, ";
+        $sql .= "`permissions`= :permissions, ";
+        $sql .= "`last_login`= :last_login, ";
+        $sql .= "`first_name`= :first_name, ";
+        $sql .= "`last_name`= :last_name, ";
+        $sql .= "`zipcode`= :zipcode, ";
+        $sql .= "`address`= :address, ";
+        $sql .= "`phone`= :phone, ";
+        $sql .= "`created_at`= :created_at, ";
+        $sql .= "`updated_at`= :updated_at, ";
+        $sql .= "WHERE `id` = :id ";
+        
+        $arr = array();
+        $arr[':email'] = $objUM->email;
+        $arr[':password'] = $objUM->password;
+        $arr[':permissions'] = $objUM->permissions;
+        $arr[':last_login'] = $objUM->last_login;
+        $arr[':first_name'] = $objUM->first_name;
+        $arr[':last_name'] = $objUM->last_name;
+        $arr[':zipcode'] = $objUM->zipcode;
+        $arr[':address'] = $objUM->address;
+        $arr[':phone'] = $objUM->phone;
+        $arr[':created_at'] = $objUM->created_at;
+        $arr[':updated_at'] = $objUM->updated_at;
+        $arr[':id'] = $objUM->id;
+        
+        return Db::update($sql, $arr);
+    }
+    
+    /**
+    * 新規作成する
+    * @return int
+    */
+    public static function insert(UserModel $objUM)
+    {
+        $sql = "INSERT INTO `user` VALUES (";
+        $sql .= "NULL ";
+        $sql .= ", :email ";
+        $sql .= ", :password ";
+        $sql .= ", :permissions ";
+        $sql .= ", :last_login ";
+        $sql .= ", :first_name ";
+        $sql .= ", :last_name ";
+        $sql .= ", :zipcode ";
+        $sql .= ", :address ";
+        $sql .= ", :phone ";
+        $sql .= ", :created_at ";
+        $sql .= ", :updated_at ";
+        $sql .= ")";
+        
+        $arr = array();
+        $arr[':email'] = $objUM->email;
+        $arr[':password'] = $objUM->password;
+        $arr[':permissions'] = $objUM->permissions;
+        $arr[':last_login'] = $objUM->last_login;
+        $arr[':first_name'] = $objUM->first_name;
+        $arr[':last_name'] = $objUM->last_name;
+        $arr[':zipcode'] = $objUM->zipcode;
+        $arr[':address'] = $objUM->address;
+        $arr[':phone'] = $objUM->phone;
+        $arr[':created_at'] = $objUM->created_at;
+        $arr[':updated_at'] = $objUM->updated_at;
+        
+        return Db::insert($sql, $arr);
+    }
+    
 }

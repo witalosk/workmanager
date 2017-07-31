@@ -12,7 +12,7 @@ class Db
   const DSN = 'mysql:dbname=%s;host=localhost;charset=utf8';
 
   //!DB名
-  const DBNAME = 'lens-share';
+  const DBNAME = 'workmanager';
 
   //!ユーザ名
   const USER_NAME = 'root';
