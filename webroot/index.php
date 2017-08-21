@@ -1,6 +1,8 @@
 <?php
 require '../common.php';
 use app\controller\UserController;
+
+session_start();
 UserController::login();
 ?>
 
@@ -10,6 +12,7 @@ UserController::login();
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="css/skyblue.min.css" type="text/css">
+    <link rel="stylesheet" href="css/master.css" type="text/css">
     <title>Working Manager</title>
 </head>
 <body>
@@ -21,7 +24,7 @@ UserController::login();
     <div class="container">
         <div class="row">
             <div class="col md-3"></div>
-            <div class="col md-6 text-center">
+            <div class="col md-6 text-center whitecard">
                 <h2>Login</h2>
                 <p>You can login to working manager system!</p>
                 <form action="" method="post">

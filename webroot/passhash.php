@@ -12,6 +12,7 @@ if(null != $pass)
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="css/skyblue.min.css" type="text/css">
+    <link rel="stylesheet" href="css/master.css" type="text/css">
     <title>Working Manager</title>
 </head>
 <body>
