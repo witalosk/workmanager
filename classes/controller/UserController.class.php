@@ -67,8 +67,10 @@ class UserController
             Db::commit();
             throw new InvalidErrorException(ExceptionCode::INVALID_LOGIN_FAIL);
         }
-        
+
         //ログイン成功時
+        $objUM->last_login = date('Y-m-d H:i:s');
+        $objUM->save();
         Db::commit();
         
         //セッション固定攻撃用対策
@@ -88,7 +90,7 @@ class UserController
     * @param bool リダイレクトするか
     * @return void
     */
-    static public function checkLogin($redirectURL = 'main.php', $redirect = true)
+    static public function checkLogin($redirectURL = 'index.php', $redirect = true)
     {
         global $WEB_URL;
         

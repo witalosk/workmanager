@@ -15,3 +15,6 @@ $WEB_URL = "http://localhost/";
 
 //Webrootのパス
 static $WEB_DIR = "/share/webroot/";
+
+//デフォルトタイムゾーン
+date_default_timezone_set('Asia/Tokyo');

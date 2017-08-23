@@ -4,6 +4,7 @@ use app\model\UserModel;
 use app\controller\UserController;
 session_start();
 
+//ログイン中モデルを取得
 $objUM = new UserModel;
 $objUM = UserController::getLoginUser();
 
@@ -29,7 +30,7 @@ $objUM = UserController::getLoginUser();
             <div class="col md-1"></div>
             <div class="col md-10 text-center">
                 <h2>ようこそ！<?=$objUM->last_name?> <?=$objUM->first_name?>さん</h2>
-                <a class="btn" href="">勤務登録</a>
+                <a class="btn" href="work.php">勤務登録</a>
                 <a class="btn btn-warning" href="">登録情報変更</a>
                 <a class="btn btn-error" href="">ログアウト</a>
                 <div class="whitecard">

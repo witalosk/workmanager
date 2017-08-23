@@ -66,7 +66,7 @@ class UserDao
         $sql .= "`address`= :address, ";
         $sql .= "`phone`= :phone, ";
         $sql .= "`created_at`= :created_at, ";
-        $sql .= "`updated_at`= :updated_at, ";
+        $sql .= "`updated_at`= :updated_at ";
         $sql .= "WHERE `id` = :id ";
         
         $arr = array();
@@ -82,7 +82,7 @@ class UserDao
         $arr[':created_at'] = $objUM->created_at;
         $arr[':updated_at'] = $objUM->updated_at;
         $arr[':id'] = $objUM->id;
-        
+
         return Db::update($sql, $arr);
     }
     
