@@ -3,11 +3,16 @@ require_once '../common.php';
 use app\model\UserModel;
 use app\controller\UserController;
 use app\dao\WorkDao;
+use app\common\Db;
 session_start();
 
 //ログイン中モデルを取得
 $objUM = new UserModel;
 $objUM = UserController::getLoginUser();
+
+//ユーザを取得
+$sql = "SELECT * FROM `user`";
+$users = Db::select($sql);
 
 //全シフトを取得
 $arr = WorkDao::getDaoFromUserId($objUM->id);
@@ -28,33 +33,42 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
             <h3>Working Manager</h3>
         </nav>
     </header>
-    <div class="container">
         <div class="row">
-            <div class="col md-1"></div>
-            <div class="col md-10 text-center">
-                <h2>ようこそ！<?=$objUM->last_name?> <?=$objUM->first_name?>さん</h2>
-                <a class="btn" href="work.php">勤務登録</a>
-                <!-- <a class="btn btn-warning" href="">登録情報変更</a> -->
+            <div class="col md-12 text-center">
+                <h2>管理者用画面</h2>
                 <a class="btn btn-error" href="logout.php">ログアウト</a>
+            </div>
+        </div>
+        <div class="row">
+            <?php foreach($users as $user)
+            {
+                if($user['id']!=1)
+                {
+                //全シフトを取得
+                $arr = WorkDao::getDaoFromUserId($user['id']);
+            ?>
+                <div class="col md-4 text-center">
                 <div class="whitecard">
-                    <h3>登録情報</h3>
+                    <h3><?=$user['last_name']?> <?=$user['first_name']?></h3>
                     <table>
                         <tr>
                             <th>氏名</th>
-                            <td><?=$objUM->last_name?> <?=$objUM->first_name?></td>
+                            <td><?=$user['last_name']?> <?=$user['first_name']?></td>
                         </tr>
                         <tr>
                             <th>住所</th>
-                            <td>〒<?=$objUM->zipcode?><br><?=$objUM->address?></td>
+                            <td>〒<?=$user['zipcode']?><br><?=$user['address']?></td>
                         </tr>
                         <tr>
                             <th>電話番号</th>
-                            <td><?=$objUM->phone?></td>
+                            <td><?=$user['phone']?></td>
+                        </tr>
+                        <tr>
+                            <th>メールアドレス</th>
+                            <td><?=$user['email']?></td>
                         </tr>
                     </table>
-                </div>
-                <br>
-                <div class="whitecard">
+                    <br>
                     <h3>勤務履歴</h3>
                     <!-- 今月 -->
                     <div class="scroll">
@@ -70,7 +84,7 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
                             array_push($arr1, $item);
                         }
                     }
-                    genShiftTable($arr1);
+                    genShiftTable($arr1, false);
                     ?>
                     </div>
                     <br>
@@ -88,7 +102,7 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
                             array_push($arr1, $item);
                         }
                     }
-                    genShiftTable($arr1);
+                    genShiftTable($arr1, false);
                     ?>
                     </div>
                     <br>
@@ -106,13 +120,16 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
                             array_push($arr1, $item);
                         }
                     }
-                    genShiftTable($arr1);
+                    genShiftTable($arr1, false);
                     ?>
                     </div>
                 </div>
             </div>
-            <div class="col md-1"></div>
+
+            <?php
+                }
+            }
+            ?>
         </div>
-    </div>
 </body>
 </html>

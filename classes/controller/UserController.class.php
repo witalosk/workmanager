@@ -46,6 +46,30 @@ class UserController
         {
             return;
         }
+
+        //ADMIN用処理
+        if($email == ADMIN_MAIL)
+        {
+            if(password_verify($password, ADMIN_HASH))
+            {
+                Db::transaction();
+                $objUM = new UserModel();
+                $objUM->getModelById(1);
+                 //ログイン成功時
+                $objUM->last_login = date('Y-m-d H:i:s');
+                $objUM->save();
+                Db::commit();
+                
+                //セッション固定攻撃用対策
+                session_regenerate_id(true);
+                
+                //セッションにUserModelを保存
+                $_SESSION[self::LOGINUSER] = $objUM;
+                
+                //ページ遷移
+                header("location: main_manage.php");
+            }
+        }
         
         //リダイレクト先がない場合, mainPageを指定
         if (null == $redirectURL)

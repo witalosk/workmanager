@@ -23,6 +23,7 @@ class WorkDao
         $sql .= "* ";
         $sql .= "FROM `work` ";
         $sql .= "WHERE `user_id` = :id ";
+        $sql .= "ORDER BY `start` DESC ";
         
         $arr = array();
         $arr[':id'] = $id;
