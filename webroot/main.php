@@ -50,6 +50,19 @@ $objUM = UserController::getLoginUser();
                         </tr>
                     </table>
                 </div>
+                <br>
+                <div class="whitecard">
+                    <h3>勤務履歴</h3>
+                    <h4>今月</h4>
+
+                    
+                    <table>
+                        <tr>
+                            <th>合計勤務時間</th>
+                            <td><?=$objUM->last_name?> <?=$objUM->first_name?></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
             <div class="col md-1"></div>
         </div>
