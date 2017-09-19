@@ -26,7 +26,7 @@ UserController::login();
             <div class="col md-3"></div>
             <div class="col md-6 text-center whitecard">
                 <h2>Login</h2>
-                <p>You can login to working manager system!</p>
+                <p>勤怠管理システムにログインします。</p>
                 <form action="" method="post">
                     <div>
                         <label>E-mail</label>

@@ -18,7 +18,8 @@ class InvalidErrorException extends \Exception
 <html>
   <head>
     <meta charset="utf-8">
-    <title>エラー - Lens</title>
+    <title>エラー - WorkingManager</title>
+    <meta name="viewport" content="width=device-width">
     <style type="text/css">
     <!--
 @import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
@@ -54,6 +55,7 @@ class InvalidErrorException extends \Exception
         <h1>{$message}</h1>
         <p>操作をよくお確かめください。</p>
         <p>{$code}</p>
+        <a href="#" class="btn" onclick="javascript:window.history.back(-1);return false;">戻る</a>
       </main>
     </div>
   </body>

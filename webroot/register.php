@@ -65,6 +65,7 @@ if(null != $_POST)
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="css/skyblue.min.css" type="text/css">
     <link rel="stylesheet" href="css/master.css" type="text/css">
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
     <title>Working Manager</title>
   </head>
 
@@ -78,7 +79,7 @@ if(null != $_POST)
       <div class="row">
         <div class="col md-3"></div>
         <div class="col md-6 text-center">
-          <h2>Create new account</h2>
+          <h2>新しいアカウントの作成</h2>
           <p>すべて必須項目です</p>
           <?php
 if(null != $error_message)
@@ -106,7 +107,7 @@ if(null != $error_message)
                 </div>
                 <div>
                   <label>郵便番号</label>
-                  <input class="form-control" type="text" name="zipcode" placeholder="e.g. 100-0001">
+                  <input class="form-control" type="text" name="zipcode" onKeyUp="AjaxZip3.zip2addr(this,'','address','address');" placeholder="e.g. 100-0001">
                 </div>
                 <div>
                   <label>住所</label>
