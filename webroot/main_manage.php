@@ -6,6 +6,8 @@ use app\dao\WorkDao;
 use app\common\Db;
 session_start();
 
+global $WEB_URL;
+
 //ログイン中モデルを取得
 $objUM = new UserModel;
 $objUM = UserController::getLoginUser();
@@ -36,7 +38,7 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
         <div class="row">
             <div class="col md-12 text-center">
                 <h2>管理者用画面</h2>
-                <a class="btn btn-error" href="user/logout">ログアウト</a>
+                <a class="btn btn-error" href="<?=$WEB_URL?>user/logout">ログアウト</a>
             </div>
         </div>
         <div class="row">

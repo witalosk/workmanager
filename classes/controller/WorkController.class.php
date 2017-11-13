@@ -51,7 +51,7 @@ class WorkController extends ControllerBase
         Db::transaction();
         $objWM->register();
         Db::commit();
-        header('Location: /user/main');
+        header('Location: '.$WEB_URL.'user/main');
       }
     }
 
@@ -68,7 +68,7 @@ class WorkController extends ControllerBase
     Db::transaction();
     Db::delete($sql, $arr);
     Db::commit();
-    header("Location: /user/main");
+    header('Location: ../user/main');
   }
 
   static public function makeShiftArray($works)

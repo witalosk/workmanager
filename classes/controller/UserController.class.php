@@ -49,7 +49,7 @@ class UserController extends ControllerBase
             array_push($works1, $item);
         }
     }
-    [$res1, $sum1] = WorkController::makeShiftArray($works1);
+    list($res1, $sum1) = WorkController::makeShiftArray($works1);
     $this->view->assign('works1', $res1);
     $this->view->assign('m1', date('Y年m月'));
     $this->view->assign('sum1', $sum1);
@@ -65,7 +65,7 @@ class UserController extends ControllerBase
             array_push($works2, $item);
         }
     }
-    [$res2, $sum2] = WorkController::makeShiftArray($works2);
+    list($res2, $sum2) = WorkController::makeShiftArray($works2);
     $this->view->assign('works2', $res2);
     $this->view->assign('m2', date('Y年m月', strtotime('-1 month')));
     $this->view->assign('sum2', $sum2);
@@ -80,7 +80,7 @@ class UserController extends ControllerBase
             array_push($works3, $item);
         }
     }
-    [$res3, $sum3] = WorkController::makeShiftArray($works3);
+    list($res3, $sum3) = WorkController::makeShiftArray($works3);
     $this->view->assign('works3', $res3);
     $this->view->assign('m3', date('Y年m月', strtotime('-2 month')));
     $this->view->assign('sum3', $sum3);
@@ -94,6 +94,7 @@ class UserController extends ControllerBase
   */
   public function registerAction()
   {
+    global $WEB_URL;
     //もしpostされていれば
     if(null != $_POST)
     {
@@ -138,7 +139,7 @@ class UserController extends ControllerBase
                 Db::transaction();
                 $objUM->register();
                 Db::commit();
-                header('Location: /');
+                header('Location: '.$WEB_URL);
             }
         }
     }
@@ -156,7 +157,7 @@ class UserController extends ControllerBase
     //非POST時は処理中断
     if(!filter_input_array(INPUT_POST))
     {
-      header("Location: /");
+      header('Location: '.$WEB_URL);
     }
 
     //POSTから値を受け取る
@@ -167,7 +168,7 @@ class UserController extends ControllerBase
     //どちらかがからの場合は何もしない
     if($email == '' || $password == '')
     {
-      header("Location: /");
+      header('Location: '.$WEB_URL);
     }
 
     //ADMIN用処理
@@ -190,7 +191,7 @@ class UserController extends ControllerBase
         $_SESSION[self::LOGINUSER] = $objUM;
 
         //ページ遷移
-        header("location: /main_manage.php");
+        header("location: ".$WEB_URL."/main_manage.php");
       }
     }
 
@@ -278,7 +279,7 @@ class UserController extends ControllerBase
     global $WEB_URL;
     $_SESSION = [];
     session_destroy();
-    header('Location: /');
+    header('Location: '.$WEB_URL);
   }
 
   /**
