@@ -19,9 +19,9 @@ class Dispatcher
     }
     //１番目のパラメータからコントローラを取得
     $controller = 'index';
-    if(0 < count($params))
+    if(DIR_NUM < count($params))
     {
-      $controller = $params[0];
+      $controller = $params[DIR_NUM];
     }
 
     //クラスインスタンス作成
@@ -29,9 +29,9 @@ class Dispatcher
 
     //2番目のパラメータをアクションとして取得
     $action = 'index';
-    if(1 < count($params))
+    if(DIR_NUM+1 < count($params))
     {
-      $action = $params[1];
+      $action = $params[DIR_NUM+1];
     }
 
     // アクションメソッドの存在確認
