@@ -29,6 +29,8 @@ class UserController extends ControllerBase
   {
     global $WEB_URL;
 
+    $this->checkLogin();
+
     //ログイン中モデルを取得
     $objUM = new UserModel;
     $objUM = UserController::getLoginUser();
@@ -251,7 +253,7 @@ class UserController extends ControllerBase
     }
     if($redirect == true)
     {
-      header('Location:'.$WEB_URL.'index.php?nexturl='.$redirectURL);
+      header('Location:'.$WEB_URL);
     }
     else
     {
