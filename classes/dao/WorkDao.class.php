@@ -11,7 +11,7 @@ use app\model\WorkModel;
 */
 class WorkDao
 {
-    
+
     /**
     * ユーザIDから配列を取得する
     * @param int $userId
@@ -24,10 +24,10 @@ class WorkDao
         $sql .= "FROM `work` ";
         $sql .= "WHERE `user_id` = :id ";
         $sql .= "ORDER BY `start` DESC ";
-        
+
         $arr = array();
         $arr[':id'] = $id;
-        
+
         return Db::select($sql, $arr);
     }
 
@@ -42,13 +42,13 @@ class WorkDao
         $sql .= "* ";
         $sql .= "FROM `work` ";
         $sql .= "WHERE `id` = :id ";
-        
+
         $arr = array();
         $arr[':id'] = $id;
-        
+
         return Db::select($sql, $arr);
     }
-        
+
     /**
     * 更新する
     * @param UserModel $objUM
@@ -60,10 +60,11 @@ class WorkDao
         $sql .= "`user_id`= :user_id, ";
         $sql .= "`start`= :start, ";
         $sql .= "`end`= :end";
+        $sql .= "`payment`= :payment";
         $sql .= "`comment`= :comment";
         $sql .= "`created_at`= :created_at, ";
         $sql .= "WHERE `id` = :id ";
-        
+
         $arr = array();
         $arr[':user_id'] = $objWM->user_id;
         $arr[':start'] = $objWM->start;
@@ -74,7 +75,7 @@ class WorkDao
 
         return Db::update($sql, $arr);
     }
-    
+
     /**
     * 新規作成する
     * @return int
@@ -86,18 +87,20 @@ class WorkDao
         $sql .= ", :user_id ";
         $sql .= ", :start ";
         $sql .= ", :end ";
+        $sql .= ", :payment ";
         $sql .= ", :comment ";
         $sql .= ", :created_at ";
         $sql .= ")";
-        
+
         $arr = array();
         $arr[':user_id'] = $objWM->user_id;
         $arr[':start'] = $objWM->start;
         $arr[':end'] = $objWM->end;
+        $arr[':payment'] = $objWM->payment;
         $arr[':comment'] = $objWM->comment;
         $arr[':created_at'] = $objWM->created_at;
-        
+
         return Db::insert($sql, $arr);
     }
-    
+
 }

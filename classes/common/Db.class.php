@@ -8,18 +8,6 @@ namespace app\common;
  */
 class Db
 {
-  //!接続文字列
-  const DSN = 'mysql:dbname=%s;host=localhost;charset=utf8';
-
-  //!DB名
-  const DBNAME = 'workmanager';
-
-  //!ユーザ名
-  const USER_NAME = 'root';
-
-  //!パスワード
-  const PASSWORD = '';
-
   //!PDOインスタンス
   static private $instance = null;
 
@@ -46,9 +34,9 @@ class Db
       );
       //PDOインスタンスを作成
       self::$instance = new \PDO(
-        sprintf(self::DSN, self::DBNAME),
-        self::USER_NAME,
-        self::PASSWORD,
+        sprintf(DSN, DBNAME),
+        DBUSER,
+        DBPASS,
         $options
       );
     }

@@ -6,6 +6,8 @@ use app\dao\WorkDao;
 use app\common\Db;
 session_start();
 
+global $WEB_URL;
+
 //ログイン中モデルを取得
 $objUM = new UserModel;
 $objUM = UserController::getLoginUser();
@@ -36,7 +38,7 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
         <div class="row">
             <div class="col md-12 text-center">
                 <h2>管理者用画面</h2>
-                <a class="btn btn-error" href="logout.php">ログアウト</a>
+                <a class="btn btn-error" href="<?=$WEB_URL?>user/logout">ログアウト</a>
             </div>
         </div>
         <div class="row">
@@ -71,7 +73,7 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
                     <br>
                     <h3>勤務履歴</h3>
                     <!-- 今月 -->
-                    <div class="scroll">
+                    <div class="scroll" style="white-space: nowrap;">
                     <h4><?=date('Y年m月')?></h4>
                     <?php
                     $strmonth = date('Y-m');
@@ -89,7 +91,7 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
                     </div>
                     <br>
                     <!-- 先月 -->
-                    <div class="scroll">
+                    <div class="scroll" style="white-space: nowrap;">
                     <h4><?=date('Y年m月', strtotime('-1 month'))?></h4>
                     <?php
                     $strmonth = date('Y-m', strtotime('-1 month'));
@@ -107,7 +109,7 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
                     </div>
                     <br>
                     <!-- 先々月 -->
-                    <div class="scroll">
+                    <div class="scroll" style="white-space: nowrap;">
                     <h4><?=date('Y年m月', strtotime('-2 month'))?></h4>
                     <?php
                     $strmonth = date('Y-m', strtotime('-2 month'));
