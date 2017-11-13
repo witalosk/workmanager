@@ -38,7 +38,8 @@
           <div class="col md-3"></div>
           <div class="col md-6 text-center whitecard">
             <ul>
-              <li>2017/11/13 試験的にViewを導入しました。また日付が入れやすくなりました。</li>
+              <li>2017/11/13 日付が入れやすくなりました。</li>
+              <li>2017/11/13 試験的にViewを導入しました。(オーナーページ以外)</li>
             </ul>
           </div>
           <div class="col md-3"></div>
