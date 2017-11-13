@@ -12,6 +12,7 @@ final class WorkModel
     public $user_id = null;
     public $start = null;
     public $end = null;
+    public $payment = null;
     public $comment = null;
     public $created_at = null;
 
@@ -27,7 +28,7 @@ final class WorkModel
             $this->setProperty($array);
         }
     }
-    
+
     /**
     * プロパティを配列で指定するメソッド
     * @param array $array
@@ -39,12 +40,13 @@ final class WorkModel
         $this->user_id = $array['user_id'];
         $this->start = $array['start'];
         $this->end = $array['end'];
+        $this->payment = $array['payment'];
         $this->comment = $array['comment'];
         $this->created_at = $array['created_at'];
-        
+
         return $this;
     }
-    
+
     /**
     * ユーザidからワークモデルを検索するメソッド
     * @param string $id
@@ -55,7 +57,7 @@ final class WorkModel
         $dao = WorkDao::getDaoFromUserId($id);
         return (isset($dao[0])) ? $this->setProperty(reset($dao)) : null;
     }
-        
+
     /**
     * DBを更新・DBに保存するメソッド
     * @return bool
@@ -64,7 +66,7 @@ final class WorkModel
     {
         return WorkDao::save($this);
     }
-    
+
     /**
     * ワークを新規登録する
     *

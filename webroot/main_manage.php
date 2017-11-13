@@ -36,7 +36,7 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
         <div class="row">
             <div class="col md-12 text-center">
                 <h2>管理者用画面</h2>
-                <a class="btn btn-error" href="logout.php">ログアウト</a>
+                <a class="btn btn-error" href="user/logout">ログアウト</a>
             </div>
         </div>
         <div class="row">

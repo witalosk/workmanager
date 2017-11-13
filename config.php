@@ -18,3 +18,9 @@ static $WEB_DIR = "/share/webroot/";
 
 //デフォルトタイムゾーン
 date_default_timezone_set('Asia/Tokyo');
+
+//database
+define("DSN", "mysql:dbname=%s;host=localhost;charset=utf8");
+define("DBNAME", "workmanager");
+define("DBUSER", "root");
+define("DBPASS", "");
