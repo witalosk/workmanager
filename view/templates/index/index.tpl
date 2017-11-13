@@ -36,7 +36,7 @@
         </div>
         <div class="row">
           <div class="col md-3"></div>
-          <div class="col md-6 text-center whitecard">
+          <div class="col md-6 whitecard">
             <ul>
               <li>2017/11/13 日付が入れやすくなりました。</li>
               <li>2017/11/13 試験的にViewを導入しました。(オーナーページ以外)</li>

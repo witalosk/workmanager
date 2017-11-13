@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32-dev-35, created on 2017-11-13 22:30:35
+/* Smarty version 3.1.32-dev-35, created on 2017-11-13 22:32:50
   from 'C:\xampp\htdocs\workmanager\view\templates\index\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32-dev-35',
-  'unifunc' => 'content_5a099e7b37d631_67208223',
+  'unifunc' => 'content_5a099f02afb031_10150012',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '83b57a37e64512437051645b5e5b23db2ae676e9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\workmanager\\view\\templates\\index\\index.tpl',
-      1 => 1510579830,
+      1 => 1510579954,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a099e7b37d631_67208223 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a099f02afb031_10150012 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,7 +62,8 @@ function content_5a099e7b37d631_67208223 (Smarty_Internal_Template $_smarty_tpl)
           <div class="col md-3"></div>
           <div class="col md-6 text-center whitecard">
             <ul>
-              <li>2017/11/13 試験的にViewを導入しました。また日付が入れやすくなりました。</li>
+              <li>2017/11/13 日付が入れやすくなりました。</li>
+              <li>2017/11/13 試験的にViewを導入しました。(オーナーページ以外)</li>
             </ul>
           </div>
           <div class="col md-3"></div>
