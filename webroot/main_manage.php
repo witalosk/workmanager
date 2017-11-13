@@ -73,7 +73,7 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
                     <br>
                     <h3>勤務履歴</h3>
                     <!-- 今月 -->
-                    <div class="scroll">
+                    <div class="scroll" style="white-space: nowrap;">
                     <h4><?=date('Y年m月')?></h4>
                     <?php
                     $strmonth = date('Y-m');
@@ -91,7 +91,7 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
                     </div>
                     <br>
                     <!-- 先月 -->
-                    <div class="scroll">
+                    <div class="scroll" style="white-space: nowrap;">
                     <h4><?=date('Y年m月', strtotime('-1 month'))?></h4>
                     <?php
                     $strmonth = date('Y-m', strtotime('-1 month'));
@@ -109,7 +109,7 @@ $arr = WorkDao::getDaoFromUserId($objUM->id);
                     </div>
                     <br>
                     <!-- 先々月 -->
-                    <div class="scroll">
+                    <div class="scroll" style="white-space: nowrap;">
                     <h4><?=date('Y年m月', strtotime('-2 month'))?></h4>
                     <?php
                     $strmonth = date('Y-m', strtotime('-2 month'));

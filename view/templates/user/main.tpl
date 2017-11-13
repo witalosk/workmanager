@@ -42,7 +42,7 @@
         <div class="whitecard">
           <div style="overflow: scroll;">
             <h3>{$m1}の勤務履歴</h3>
-            <table>
+            <table style="white-space: nowrap;">
               <tbody>
                 <tr>
                   <th>No.</th><th>開始時間</th><th>終了時間</th><th>時間</th><th>時給</th><th>単価</th><th>コメント</th><th>×</th>
@@ -70,7 +70,7 @@
           </div>
           <div style="overflow: scroll;">
             <h3>{$m2}の勤務履歴</h3>
-            <table>
+            <table style="white-space: nowrap;">
               <tbody>
                 <tr>
                   <th>No.</th><th>開始時間</th><th>終了時間</th><th>時間</th><th>時給</th><th>単価</th><th>コメント</th><th>×</th>
@@ -98,7 +98,7 @@
           </div>
           <div style="overflow: scroll;">
             <h3>{$m3}の勤務履歴</h3>
-            <table>
+            <table style="white-space: nowrap;">
               <tbody>
                 <tr>
                   <th>No.</th><th>開始時間</th><th>終了時間</th><th>時間</th><th>時給</th><th>単価</th><th>コメント</th><th>×</th>

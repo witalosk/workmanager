@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32-dev-35, created on 2017-11-13 21:44:37
+/* Smarty version 3.1.32-dev-35, created on 2017-11-13 23:54:35
   from 'C:\xampp\htdocs\workmanager\view\templates\user\main.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32-dev-35',
-  'unifunc' => 'content_5a0993b53b21d2_99396841',
+  'unifunc' => 'content_5a09b22b9a6e04_93415425',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c9b18b3244dd617bbe71723812575ea53c886d55' => 
     array (
       0 => 'C:\\xampp\\htdocs\\workmanager\\view\\templates\\user\\main.tpl',
-      1 => 1510577074,
+      1 => 1510584871,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a0993b53b21d2_99396841 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a09b22b9a6e04_93415425 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -78,7 +78,7 @@ css/master.css" type="text/css">
           <div style="overflow: scroll;">
             <h3><?php echo $_smarty_tpl->tpl_vars['m1']->value;?>
 の勤務履歴</h3>
-            <table>
+            <table style="white-space: nowrap;">
               <tbody>
                 <tr>
                   <th>No.</th><th>開始時間</th><th>終了時間</th><th>時間</th><th>時給</th><th>単価</th><th>コメント</th><th>×</th>
