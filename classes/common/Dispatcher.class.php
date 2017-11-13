@@ -10,7 +10,7 @@ class Dispatcher
     // パラメーター取得（末尾の / は削除）
     $param = preg_replace('/\/?$/', '', $_SERVER['REQUEST_URI']);
     $param = trim($param, '/');
-
+    $param = preg_replace('/\?.+/', '', $param);
     $params = [];
     if('' != $param && '/' != $param)
     {
